@@ -35,4 +35,12 @@ public abstract class Component {
     public Component getParent() {
         return this.parent;
     }
+
+    public Boolean checkParent(Component c) {
+        if (this.getParent() == null) return false;
+
+        if (this.getParent().getName() == c.getName()) return true;
+
+        return this.getParent().checkParent(c);
+    }
 }

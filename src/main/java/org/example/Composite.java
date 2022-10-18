@@ -1,4 +1,5 @@
 package org.example;
+
 import java.util.ArrayList;
 
 public class Composite extends Component {
@@ -9,8 +10,11 @@ public class Composite extends Component {
         this.components = new ArrayList<>();
     }
 
-    @Override
     public void add(Component c) {
+        if (this.checkParent(c)) {
+            System.out.println("O Component " + c.getName() + " já está na arvore");
+            return;
+        }
         this.components.add(c);
         c.setParent(this);
     }
@@ -18,7 +22,7 @@ public class Composite extends Component {
     public void show(String ident) {
         System.out.println(ident + this.getName());
         for (Component c : this.components) {
-            c.show("-" + ident);
+            c.show(ident + "-");
         }
     }
 }
